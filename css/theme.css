@@ -1,0 +1,354 @@
+/* ═══════════════════════════════════════════════════════════════
+   MEHFIL · theme.css — the garnet darbar skin
+   ---------------------------------------------------------------
+   The page is pearl ivory hung with garnet velvet; the hero is
+   the velvet darbar itself — a jharokha arch of zardozi gold on
+   deep garnet, brass chandeliers, spotlight vignettes, and slow
+   royal light. This file re-skins every scene on top of the
+   shared base CSS.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1 · the ivory world with garnet velvet seams ─────────────── */
+
+body {
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--ivory) 96%, var(--champagne) 4%) 0%,
+      var(--ivory) 100%);
+}
+
+/* film grain — the whole page is one cinematic frame */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 9990;
+  pointer-events: none;
+  opacity: .04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 1.4s steps(4) infinite;
+}
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-1.2%, .8%); }
+  50% { transform: translate(.9%, -1.1%); }
+  75% { transform: translate(-.6%, -.7%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ── 2 · the opening — velvet curtains ────────────────────────── */
+
+.opening {
+  background:
+    radial-gradient(120% 70% at 50% -10%, color-mix(in srgb, var(--crimson) 20%, transparent) 0%, transparent 58%),
+    radial-gradient(90% 46% at 50% 112%, color-mix(in srgb, var(--champagne) 12%, transparent) 0%, transparent 66%),
+    linear-gradient(180deg, var(--night) 0%, var(--night-deep) 100%);
+}
+
+/* velvet curtain bars — they part when the seal breaks */
+.letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: max(11vh, 72px);
+  z-index: 40;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--wine) 88%, #000 12%) 0%,
+      color-mix(in srgb, var(--night-deep) 90%, #000 10%) 100%);
+  pointer-events: none;
+  transition: transform 1.5s var(--ease), opacity 1.5s var(--ease);
+}
+.letterbox--top {
+  top: 0; transform-origin: top;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='44'%3E%3Cpath d='M13 44 C7 34 7 22 13 0 C19 22 19 34 13 44 Z' fill='%23C2A052' fill-opacity='.12'/%3E%3C/svg%3E");
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--champagne) 44%, transparent);
+}
+.letterbox--bottom {
+  bottom: 0; transform-origin: bottom;
+  box-shadow: 0 -1px 0 color-mix(in srgb, var(--champagne) 44%, transparent);
+}
+.opening.is-open .letterbox--top { transform: translateY(-102%); }
+.opening.is-open .letterbox--bottom { transform: translateY(102%); }
+
+/* the flap liner is garnet velvet with a fine gold lattice */
+.envelope__flap-liner {
+  background:
+    radial-gradient(130% 110% at 50% 0%, rgba(231, 187, 164, .26), transparent 62%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='none' stroke='%23C2A052' stroke-opacity='.5'%3E%3Cpath d='M 22 4 L 26.6 15.4 L 38 20 L 26.6 24.6 L 22 36 L 17.4 24.6 L 6 20 L 17.4 15.4 Z'/%3E%3Ccircle cx='22' cy='20' r='2.2'/%3E%3Cpath d='M 0 20 H 6 M 38 20 H 44 M 22 0 V 4 M 22 36 V 40'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(184deg,
+      color-mix(in srgb, var(--night) 86%, var(--champagne) 14%) 0%,
+      color-mix(in srgb, var(--night-deep) 88%, var(--crimson) 12%) 100%);
+}
+
+/* ── 3 · the hero — the velvet darbar stage ───────────────────── */
+
+.scene--hero {
+  background:
+    radial-gradient(120% 64% at 50% 0%, color-mix(in srgb, var(--crimson) 16%, transparent) 0%, transparent 56%),
+    radial-gradient(80% 44% at 50% 104%, color-mix(in srgb, var(--champagne) 12%, transparent) 0%, transparent 60%),
+    url("assets/art/velvet-garnet.jpg") center / cover no-repeat,
+    linear-gradient(180deg, var(--night) 0%, var(--night-deep) 78%);
+}
+
+/* spotlight vignette around the whole stage */
+.scene--hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 50%, color-mix(in srgb, #000 46%, transparent) 100%);
+}
+
+/* the interior of the jharokha is an ivory letter on the velvet */
+.arch-card__inner {
+  left: 19.5%;
+  right: 19.5%;
+  top: 31.5%;
+  bottom: 6%;
+  background:
+    radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--champagne) 14%, transparent) 0%, transparent 42%),
+    linear-gradient(180deg,
+      var(--paper-raised) 0%,
+      var(--ivory) 46%,
+      color-mix(in srgb, var(--parchment) 82%, var(--ivory) 18%) 100%);
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--champagne) 42%, transparent),
+    inset 0 0 46px color-mix(in srgb, var(--champagne) 12%, transparent),
+    0 26px 60px -24px color-mix(in srgb, #000 58%, transparent);
+  justify-content: center;
+  padding-inline: clamp(1rem, 3.4vw, 1.8rem);
+}
+
+/* the shamsa medallion glows behind the arch */
+.noor-stage__shamsa {
+  opacity: .2;
+  filter: drop-shadow(0 0 30px color-mix(in srgb, var(--champagne) 24%, transparent));
+}
+
+/* drifting light motes — chandelier sparkle */
+.noor-stage__mote {
+  background: radial-gradient(circle, var(--gold-bright) 0%, transparent 70%);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--champagne) 55%, transparent);
+}
+
+/* ── 4 · scene rhythm — velvet bands and ivory pages ──────────── */
+
+.scene--story,
+.scene--details,
+.scene--palette,
+.scene--std,
+.scene--venue,
+.scene--rsvp {
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--ivory) 96%, var(--champagne) 4%) 0%,
+      var(--ivory) 9%,
+      var(--ivory) 91%,
+      color-mix(in srgb, var(--parchment) 88%, var(--ivory) 12%) 100%);
+  border-block: 16px solid var(--night-deep);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--champagne) 40%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--champagne) 40%, transparent),
+    0 26px 70px -30px color-mix(in srgb, var(--night-deep) 52%, transparent);
+}
+
+/* dark bands — the ayat, itinerary, countdown and closing are velvet */
+.scene--ayat,
+.scene--countdown,
+.scene--closing,
+.scene--itinerary {
+  background:
+    radial-gradient(110% 84% at 50% 0%, color-mix(in srgb, var(--crimson) 12%, transparent) 0%, transparent 58%),
+    url("assets/art/velvet-garnet.jpg") center / cover no-repeat,
+    linear-gradient(180deg, var(--night) 0%, var(--night-deep) 80%);
+}
+
+/* ── 5 · the mehfil typography ────────────────────────────────── */
+
+.display,
+.arch-card__title,
+.venue-title {
+  font-family: var(--font-display);
+  letter-spacing: .02em;
+}
+
+.kicker {
+  font-family: var(--font-ui);
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.kicker--ink { color: var(--gold-ink); }
+.kicker--light { color: var(--gold-bright); }
+
+.script--names,
+.opening__names,
+.envelope__letter-names { font-family: var(--font-script); }
+
+.count-clock strong,
+.std-numerals,
+.envelope__letter-date { font-family: var(--font-display); letter-spacing: .08em; }
+
+/* on dark grounds the gold voices are safe */
+.scene--ayat .display,
+.scene--countdown .display,
+.scene--closing .display,
+.scene--itinerary .display { color: var(--gold-bright); }
+
+/* a slow light sweep across the dark-band display titles */
+.scene--countdown .count-script em,
+.scene--ayat .ayat-title {
+  background: linear-gradient(100deg,
+    var(--gold-bright) 30%,
+    #F5E7BF 46%,
+    var(--gold-bright) 62%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: name-shimmer 7s ease-in-out 1.6s infinite;
+}
+@keyframes name-shimmer {
+  0%, 100% { background-position: 12% 0; }
+  50% { background-position: 88% 0; }
+}
+
+/* ── 6 · contrast law — gold never reads body on ivory ────────── */
+
+.scene--story .prose,
+.scene--details .prose,
+.scene--palette .prose,
+.scene--venue .prose,
+.scene--rsvp .prose,
+.scene--std .prose { color: var(--ink); }
+
+.scene--story .ink-soft,
+.scene--details .ink-soft,
+.scene--palette .ink-soft,
+.scene--venue .ink-soft,
+.scene--rsvp .ink-soft,
+.scene--std .ink-soft,
+.particulars .prose { color: var(--ink-soft); }
+
+/* ── 7 · the mini ayat — a small Amiri plate under the story ──── */
+
+.mini-ayat {
+  margin: clamp(1.6rem, 4vh, 2.4rem) auto 0;
+  max-width: 34rem;
+  padding: clamp(1.1rem, 3vh, 1.6rem) clamp(1.2rem, 3.4vw, 1.9rem);
+  background:
+    linear-gradient(180deg, var(--paper-raised) 0%, var(--parchment) 100%);
+  border: 1px solid color-mix(in srgb, var(--champagne) 44%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+.mini-ayat__ar {
+  margin: 0;
+  font-family: var(--font-arabic);
+  font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+  line-height: 2;
+  color: var(--ink);
+}
+.mini-ayat__en {
+  margin: .7rem 0 0;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: clamp(.98rem, 2vw, 1.08rem);
+  color: var(--ink-soft);
+}
+.mini-ayat__ref {
+  margin: .55rem 0 0;
+  color: var(--gold-ink);
+}
+
+/* ── 8 · motion — filmic reveals ──────────────────────────────── */
+
+.reveal {
+  transition:
+    opacity .9s var(--ease),
+    transform 1.15s var(--ease);
+}
+.scene-body .reveal:nth-child(2) { transition-delay: .08s; }
+.scene-body .reveal:nth-child(3) { transition-delay: .16s; }
+.scene-body .reveal:nth-child(4) { transition-delay: .24s; }
+.scene-body .reveal:nth-child(5) { transition-delay: .3s; }
+
+.noor-stage__lantern,
+.opening__lantern { animation-duration: 9.5s; }
+
+/* buttons — burnished imperial gold on garnet */
+.btn {
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+.btn--emerald,
+.btn--primary {
+  background: linear-gradient(165deg, var(--gold-bright) 0%, var(--champagne) 48%, var(--champagne-soft) 100%);
+  color: var(--night-deep);
+  border: 1px solid color-mix(in srgb, var(--champagne-soft) 60%, transparent);
+  box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--night-deep) 56%, transparent);
+}
+.btn--emerald:hover,
+.btn--primary:hover { filter: brightness(1.06); }
+.btn--ghost {
+  border: 1px solid color-mix(in srgb, var(--champagne) 52%, transparent);
+  color: var(--gold-bright);
+  background: transparent;
+}
+
+/* ── 9 · details — the darbar's hardware ──────────────────────── */
+
+.scene--details .event-card,
+.event {
+  border: 1px solid color-mix(in srgb, var(--champagne) 34%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.ayat-plate {
+  border: 1px solid color-mix(in srgb, var(--champagne) 46%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--champagne) 14%, transparent),
+    0 24px 70px -30px color-mix(in srgb, #000 62%, transparent);
+}
+
+.palette-swatch,
+.swatch {
+  border: 1px solid color-mix(in srgb, var(--champagne) 38%, transparent);
+}
+
+.field input,
+.field textarea,
+.field select {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--champagne-soft) 44%, transparent);
+}
+
+.site-footer {
+  background: var(--night-deep);
+  border-top: 1px solid color-mix(in srgb, var(--champagne) 28%, transparent);
+}
+.site-footer, .site-footer a { color: var(--night-ink); }
+
+/* ── 10 · reduced motion & small screens ──────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  .scene--countdown .count-script em,
+  .scene--ayat .ayat-title {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: var(--gold-bright);
+  }
+}
+
+@media (max-width: 720px) {
+  .letterbox { height: max(8vh, 56px); }
+  .noor-stage__mote { display: none; }
+}
