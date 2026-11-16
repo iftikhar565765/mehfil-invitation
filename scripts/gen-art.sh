@@ -1,37 +1,55 @@
 #!/bin/bash
-# MEHFIL — garnet velvet & gold darbar suite: premium art on pure white
-# for the flood-fill cutout pipeline. Textures are full-bleed.
+# MEHFIL — garnet & gold darbar suite, regeneration Ⅱ.
+# Hardened prompts: flat painted matte illustration, no photorealism,
+# no 3D bevel. Raw on pure white for the flood-fill cutout pipeline.
 set -u
 RAW=/home/z/my-project/mehfil-invitation/_raw-art
 mkdir -p "$RAW"
 
 gen () {
   local name="$1" size="$2" prompt="$3"
-  for attempt in 1 2 3 4 5 6 7 8; do
+  for attempt in 1 2 3 4 5 6 7 8 9 10; do
     [ -s "$RAW/$name.png" ] && { echo "have $name"; return 0; }
     echo "== mehfil/$name attempt $attempt"
-    if timeout 150 z-ai image -p "$prompt" -o "$RAW/$name.png" -s "$size" 2>&1 | grep -q 'File saved to'; then
-      echo "ok mehfil/$name"; sleep 12; return 0
+    if timeout 150 z-ai image -p "$prompt" -o "$RAW/$name.png" -s "$size" 2>&1 | grep -q 'completed'; then
+      echo "ok mehfil/$name"; sleep 8; return 0
     fi
-    sleep $((35 + attempt * 12))
+    rm -f "$RAW/$name.png"
+    sleep $((20 + attempt * 8))
   done
   echo "FAILED mehfil/$name"
 }
 
-GOLD="fine antique gold zardozi threadwork embroidery style, delicate metallic wire curls, tiny gold sequin bead dots, muted matte gold, no gloss overload, no 3D bevel, flat elegant luxury composition, crisp clean silhouette edges, no halo, no glow bleeding outside the object, isolated on pure white background, high detail, no text, no letters, no calligraphy"
+STYLE="flat painted illustration in the manner of a Mughal miniature and zardozi goldwork, luxury wedding stationery artwork, muted matte antique gold with deep garnet red accents, absolutely no photorealism, no photograph, no 3D rendering, no glossy metallic bevel, no jewelry shine, uniform matte finish, crisp clean silhouette, isolated on pure white background, high detail, no text, no letters, no watermark"
 
-# ---------- hero & scene art ----------
-gen arch-mehfil 1024x1024 "a flat ornamental multifoil scalloped jharokha arch FRAME only, perfectly centred filling the frame, the arch band of deep garnet red with fine gold zardozi embroidery edging and tiny gold bead dots, small gold garland chain at the crown apex, thin slim band, the area inside the arch completely plain flat pure white empty, the area outside the arch completely plain flat pure white empty, no walls, no depth, no niche, no curtains, no shading inside, $GOLD"
-gen seal-mehfil 1024x1024 "an ornate octagonal darbar seal medallion, fine gold zardozi border with eight-pointed star centre, two small elegant tassels hanging at the bottom, matte antique gold with deep garnet enamel accents, $GOLD"
-gen corner-mehfil 1024x1024 "a top-left corner ornament of slender gold zardozi floral vine with small paisley buds, tiny gold sequin dots and thin curling tendrils curving gently inward, $GOLD"
-gen lantern-mehfil 1024x1024 "one hanging Mughal brass lantern chandelier with tiny crystal glass drops cascading along slim gold chains, slender ornate chains rising to a small ring at the top, matte antique brass with deep garnet enamel accents, unlit crystals with no bloom, $GOLD"
-gen shamsa-mehfil 1024x1024 "a round Islamic eight-pointed star medallion, fine matte gold zardozi filigree radiating from a small garnet red stone centre, tiny gold bead dots along the rays, perfectly symmetrical and delicate, $GOLD"
-gen divider-mehfil 1024x1024 "a slim horizontal gold ornament rule, a fine double hairline with a small elegant paisley motif and two symmetric zardozi scrolls at the centre, perfectly centred and delicate, $GOLD"
-gen crescent-mehfil 1024x1024 "a slender matte antique gold crescent moon with one tiny five-pointed gold star nestled in its curve and small jasmine buds at the crescent tips, fine zardozi surface texture, $GOLD"
-gen roses-mehfil 1024x1024 "a lush cluster of deep garnet red roses with cream white jasmine sprigs, dark velvet green leaves and tiny gold buds, soft painterly matte illustration, muted royal jewel tones, crisp clean edges, isolated on pure white background, high detail, no text"
-gen swag-mehfil 1024x1024 "an elegant hanging garland swag of deep red roses and cream jasmine with fine gold leaves and thin gold ribbon tied at both ends, soft painterly matte illustration, muted royal tones, crisp clean edges, isolated on pure white background, high detail, no text"
-gen dome-mehfil 1152x864 "a majestic Mughal onion dome pavilion in matte antique gold with a slender gold finial, flanked by two elegant slim minarets with tiny arched windows, deep garnet red stone bands and gold zardozi ornament, royal twilight grandeur, $GOLD"
+# 1 — hero arch: cusped multifoil Mughal arch, zardozi band, rose glow inside
+gen arch-mehfil-tall 1152x864 "one single grand cusped multifoil Mughal pishtaq arch frame perfectly centred filling most of the frame, the arch band of fine matte antique gold zardozi scrollwork with small garnet red enamel blossoms, slim side colonnettes with tiny gold capitals, a small gold finial at the crown apex, the inside of the arch filled with a soft warm rose-gold dawn glow gradient darkest at the bottom fading gently upward, everything outside the arch pure white empty, $STYLE"
 
-# ---------- full-bleed textures ----------
-gen velvet-garnet 1440x720 "seamless deep garnet burgundy velvet fabric texture in soft candlelight, fine plush pile with subtle folds, faint warm gold shimmer low in the frame, rich royal textile surface, soft diffused light, minimal, no objects, no text, no border, flat even lighting, high detail"
+# 2 — fanous lantern
+gen lantern-mehfil 768x1344 "one slender hanging Mughal darbar lantern, matte antique gold frame with fine pierced openwork, warm garnet red tinted glass panels, small ornate chain rising to a ring at the top, small gold cap at base and crown, $STYLE"
+
+# 3 — shamsa medallion
+gen shamsa-mehfil 1024x1024 "one round Islamic eight-pointed khatim star medallion of fine matte gold zardozi filigree radiating from a small deep garnet red stone centre, delicate hairline arabesque scrolls between the points, perfectly symmetric, centred, generous white margin around it, $STYLE"
+
+# 4 — corner ornament (true corner, anchored top-left)
+gen corner-mehfil 1024x1024 "one top-left corner ornament of slender matte antique gold zardozi arabesque scrollwork hugging the top-left corner of the canvas with tiny garnet red blossoms and fine gold leaves curving gently inward toward the centre, thin delicate lines, generous white space on the right and bottom, $STYLE"
+
+# 5 — divider: ultra-thin horizontal rule
+gen divider-mehfil 1344x768 "an extremely thin horizontal gold divider rule running across the full width at the vertical centre of the canvas, a single fine hairline double rule with one tiny gold paisley rosette at the exact centre and two small symmetric arabesque scrolls curling outward at the ends, the ornament occupies only the middle eight percent of the canvas height, everything above and below the rule pure white empty, $STYLE"
+
+# 6 — crescent
+gen crescent-mehfil 1024x1024 "one slender elongated matte antique gold crescent moon elegantly curved with one tiny five-pointed gold star nestled in its upper curve, fine zardozi filigree scroll texture on the crescent surface, centred with generous white margin, $STYLE"
+
+# 7 — roses (tight cluster, no white pockets)
+gen roses-mehfil 1024x1024 "one tight lush cluster of deep garnet red velvet roses with dark bronze-gold leaves and tiny gold buds, flowers overlapping densely with no gaps between them, soft painterly matte illustration, muted jewel tones, crisp clean edges, isolated on pure white background, high detail, no text"
+
+# 8 — wax seal
+gen seal-mehfil 1024x1024 "one round deep garnet red wax seal stamped with an embossed matte antique gold eight-pointed star and slender crescent at its centre, fine beaded pressed edge, slightly imperfect hand-poured wax rim, matte finish, centred, generous white margin, $STYLE"
+
+# 9 — swag garland (wide)
+gen swag-mehfil 1344x768 "one elegant hanging garland swag curving in a gentle arc across the canvas, made of small garnet red roses and ivory jasmine buds with fine matte gold leaves and thin gold ribbon tied at both upper corners, soft painterly matte illustration, muted jewel tones, crisp clean edges, isolated on pure white background, high detail, no text"
+
+# 10 — dome (closing plate)
+gen dome-mehfil 1152x864 "one majestic white ivory marble Mughal dome pavilion with a slender gold crescent finial at its crown, a single grand dome with small chattri kiosks, flanked by two slim elegant minarets with warm lit arched windows, garnet dusk sky glow, painted matte Mughal miniature illustration, no photorealism, no photograph, crisp clean edges, isolated on pure white background, high detail, no text"
+
 echo MEHFIL-DONE
