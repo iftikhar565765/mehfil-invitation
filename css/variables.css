@@ -60,7 +60,7 @@
   --sunset:        color-mix(in srgb, var(--parchment) 88%, var(--champagne) 12%);
   --sunset-soft:   color-mix(in srgb, var(--parchment) 58%, transparent);
   --night-ink:     color-mix(in srgb, var(--parchment) 66%, transparent);
-  --night-faint:   color-mix(in srgb, var(--parchment) 48%, transparent);
+  --night-faint:   color-mix(in srgb, var(--parchment) 60%, transparent);
   --ember:         color-mix(in srgb, var(--champagne) 40%, #F3E3BC 60%);
 
   /* ── luxury hardware — hairlines and soft shadow layers ───── */

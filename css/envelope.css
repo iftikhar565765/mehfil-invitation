@@ -521,6 +521,12 @@
   .opening__hint { margin-bottom: .8rem; }
   .opening__open { min-width: min(230px, 78vw); }
 }
+
+/* narrow screens — the hint and its rules must never crowd the text */
+@media (max-width: 480px) {
+  .opening__hint { letter-spacing: .22em; gap: 10px; }
+  .opening__hint-rule { width: 20px; }
+}
 @media (max-height: 560px) {
   .opening__lantern, .opening__florals { display: none; }
   .opening__watermark { display: none; }
