@@ -163,8 +163,8 @@
 /* the shamsa rosette glowing behind the envelope */
 .envelope-lace {
   position: absolute;
-  width: 128%;
-  opacity: .42;
+  width: 118%;
+  opacity: .3;
   pointer-events: none;
   user-select: none;
 }
@@ -483,6 +483,8 @@
   letter-spacing: .3em;
   font-size: .58rem;
   color: var(--night-faint);
+  text-shadow: 0 1px 10px color-mix(in srgb, var(--night-deep) 85%, transparent),
+               0 0 22px color-mix(in srgb, var(--night-deep) 60%, transparent);
 }
 .opening__hint-rule {
   width: 44px;

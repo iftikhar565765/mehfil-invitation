@@ -927,7 +927,7 @@
       return;
     }
 
-    var lastDayText = '';
+
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
@@ -949,10 +949,12 @@
       els.m.textContent = pad(m);
       els.s.textContent = pad(s);
 
-      var dayText = d + (d === 1 ? ' day' : ' days') + ' until the wedding';
-      if (dayText !== lastDayText) {
-        lastDayText = dayText;
-        if (summary) summary.textContent = dayText;
+      /* the poetic line under the clock — set once, never a bare
+         repeat of the numbers above it */
+      if (summary && !summary.dataset.done) {
+        summary.dataset.done = '1';
+        summary.textContent = (cfg.countdown && cfg.countdown.summaryText) ||
+                              'each hour brings the Qubool Hai closer';
       }
     }
 

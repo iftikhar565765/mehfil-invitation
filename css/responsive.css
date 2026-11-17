@@ -22,13 +22,9 @@
   .event__note { max-width: 100%; }
 
   .arch-card { width: min(100%, 420px); }
-  .arch-card__inner { left: 23.5%; right: 23.5%; top: 20%; bottom: 26%; padding-inline: 7%; }
 }
 
 @media (max-width: 560px) {
-  .arch-card__name { font-size: clamp(1.9rem, 7.6vw, 2.4rem); }
-  .arch-card__bismillah { font-size: .92rem; }
-  .arch-card__venue-address { font-size: .56rem; }
   .moon-card__name { font-size: clamp(1.9rem, 7.6vw, 2.4rem); }
   .opening__florals { width: clamp(8rem, 30vw, 12rem); }
   .opening__lantern--l { left: .2rem; }
@@ -36,11 +32,15 @@
   .noor-stage__lantern { width: clamp(3.6rem, 13vw, 5rem); top: -1.6rem; }
   .noor-stage__lantern--l { left: -.2rem; }
   .noor-stage__lantern--r { right: -.2rem; }
-  .noor-orn--swag-bl, .noor-orn--swag-br { display: none; }
-  .arch-card__names { font-size: inherit; }
   .story-corner { width: clamp(4.8rem, 20vw, 7rem); }
-  .count-clock { flex-wrap: wrap; gap: 1.1rem 1.6rem; }
-  .count-unit { min-width: 4.4rem; }
+  .count-clock {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(6.4rem, 1fr));
+    gap: 1.4rem 1rem;
+    max-width: 22rem;
+    margin-inline: auto;
+  }
+  .count-unit { min-width: 0; }
   .watermark-script { font-size: clamp(5rem, 26vw, 9rem); right: -.6rem; }
   .std-actions .btn { width: min(280px, 82vw); }
   .day-words { gap: 1rem 1.6rem; }

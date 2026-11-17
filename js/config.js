@@ -53,7 +53,7 @@ window.HEIRLOOM = {
      The visual editor can change these values without editing HTML. */
   content: {
     pageTitle: "Ayesha & Imran · 20 November 2027 — A Nikah Invitation in Garnet & Gold",
-    pageDescription: "Ayesha and Imran request the honour of your presence at The Darbar Mahal, Lucknow — the mayun, the mehndi and the Nikah at the mayun, the mehndi and the Nikah at 7:00 on Saturday the twentieth of November 2027. Open your invitation.",
+    pageDescription: "Ayesha and Imran request the honour of your presence at The Darbar Mahal, Lucknow — the mayun, the mehndi and the Nikah at 7:00 on Saturday the twentieth of November 2027. Open your invitation.",
     socialTitle: "Ayesha & Imran — A Nikah Invitation · 20.11.2027",
     socialDescription: "A garnet envelope, a golden darbar seal and a blessed union — you are cordially invited.",
     navStory: "Story",
@@ -177,7 +177,7 @@ window.HEIRLOOM = {
     countdownMinutesLabel: "Minutes",
     countdownSecondsLabel: "Seconds",
     countdownKicker: "The Grand Countdown",
-    countdownTitle: "counting the hours until",
+    countdownTitle: "Counting the hours until",
     countdownPromise: "the Nikah begins",
     closingScript: "with all our love",
     closingMessage: "Thank you, from the depths of our hearts, for being part of our story. May our home be filled with sakinah, mawaddah and rahmah — tranquillity, love and mercy — and may every guest who walks through our door leave with a blessing. Your presence completes our celebration.",
@@ -222,8 +222,9 @@ window.HEIRLOOM = {
     deadline: "the twentieth of October, 2027"        // SAMPLE
   },
 
-  /* ── Countdown wording (invalid or passed dates) ─────────────── */
+  /* ── Countdown wording (live, invalid or passed dates) ───────── */
   countdown: {
+    summaryText: "each hour brings the Qubool Hai closer",
     invalidMessage: "The Nikah is still being finalised — see the celebrations below.",
     pastMessage: "The celebration has begun — thank you for being part of our story."
   },

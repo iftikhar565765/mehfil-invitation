@@ -63,7 +63,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(112%, 880px);
-  opacity: .42;
+  opacity: .3;
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -125,6 +125,7 @@
   z-index: 2;
   width: min(100%, 500px);
   aspect-ratio: 864 / 1123;
+  container-type: inline-size;
 }
 
 .arch-card__frame {
@@ -139,20 +140,22 @@
   z-index: 0;
 }
 
-/* the ivory letter resting on the darbar throne */
+/* the ivory letter resting on the darbar throne —
+   every size below is in cqw so the letter scales as one piece
+   with the jharokha and can never overflow its niche */
 .arch-card__inner {
   position: absolute;
   left: 24%;
   right: 24%;
-  top: 21%;
-  bottom: 27%;
+  top: 19.5%;
+  bottom: 25.5%;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 6% 7%;
+  padding: 2cqw 4cqw;
   background: linear-gradient(180deg,
     var(--paper-raised) 0%,
     var(--ivory) 52%,
@@ -164,21 +167,14 @@
     0 22px 52px -22px color-mix(in srgb, #1D060C 70%, transparent);
 }
 .arch-card__inner > * { max-width: 100%; }
-.arch-card__inner > * + * { margin-top: clamp(.35rem, 1.4vh, .8rem); }
+.arch-card__inner > * + * { margin-top: 1.1cqw; }
 
 .arch-card__bismillah {
   font-family: var(--font-arabic);
-  font-size: clamp(.98rem, 2.9vw, 1.2rem);
-  line-height: 1.7;
+  font-size: 3.2cqw;
+  line-height: 1.6;
   color: var(--burgundy);
   margin-bottom: 0;
-}
-
-.arch-card__blessing {
-  color: var(--gold-ink);
-  letter-spacing: .2em;
-  font-size: clamp(.5rem, 1.4vw, .6rem);
-  line-height: 2;
 }
 
 .arch-card__invite {
@@ -187,8 +183,8 @@
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: .18em;
-  font-size: clamp(.5rem, 1.5vw, .62rem);
-  line-height: 2;
+  font-size: 2.05cqw;
+  line-height: 1.8;
   color: var(--ink-soft);
 }
 
@@ -204,8 +200,8 @@
 .arch-card__name {
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(2.2rem, 6.6vw, 3.2rem);
-  line-height: 1.05;
+  font-size: 8cqw;
+  line-height: 1.04;
   color: var(--burgundy);
   text-shadow: 0 1px 0 color-mix(in srgb, var(--champagne) 30%, transparent);
 }
@@ -213,7 +209,7 @@
 .arch-card__and {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-size: clamp(.92rem, 2.7vw, 1.16rem);
+  font-size: 2.8cqw;
   color: var(--gold-ink);
   letter-spacing: .08em;
 }
@@ -237,68 +233,46 @@
 .arch-card__date-week {
   color: var(--gold-ink);
   letter-spacing: .3em;
-  font-size: clamp(.52rem, 1.5vw, .62rem);
+  font-size: 1.9cqw;
+  line-height: 1.5;
 }
 .arch-card__date-row {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: .85rem;
-  margin-top: .26rem;
+  gap: 1.7cqw;
+  margin-top: .5cqw;
 }
 .arch-card__date-side {
   color: var(--ink-soft);
-  font-size: clamp(.56rem, 1.7vw, .68rem);
+  font-size: 2cqw;
 }
 .arch-card__date-num {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 5vw, 2.25rem);
+  font-size: 6.4cqw;
   line-height: 1;
   color: var(--burgundy);
   letter-spacing: .04em;
 }
 
-.arch-card__nikah {
-  margin-top: 0;
-  color: var(--ink-soft);
-  letter-spacing: .16em;
-  font-size: clamp(.5rem, 1.5vw, .62rem);
-  line-height: 1.9;
-  max-width: 100%;
-}
-.arch-card__nikah-sep { color: var(--gold-line); }
-
 .arch-card__venue {
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  gap: .2rem;
-}
-.arch-card__venue-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--gold-ink);
-  font-size: clamp(.5rem, 1.4vw, .6rem);
-}
-.arch-card__venue-label i {
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--gold-line);
+  gap: .4cqw;
 }
 .arch-card__venue-name {
   font-family: var(--font-display);
-  font-size: clamp(.9rem, 2.5vw, 1.1rem);
+  font-size: 3cqw;
   letter-spacing: .06em;
   color: var(--ink);
 }
 .arch-card__venue-address {
   font-family: var(--font-body);
-  font-size: clamp(.56rem, 1.6vw, .68rem);
+  font-size: 1.9cqw;
   line-height: 1.5;
   color: var(--ink-soft);
-  max-width: 26ch;
+  max-width: 30ch;
 }
 
 /* the base — deep red roses anchored to the stage floor */
@@ -316,14 +290,6 @@
 }
 .noor-orn--roses-bl { left: -1rem; transform: rotate(-4deg); }
 .noor-orn--roses-br { right: -1rem; transform: scaleX(-1) rotate(-4deg); }
-.noor-orn--swag-bl,
-.noor-orn--swag-br {
-  bottom: 24%;
-  width: clamp(4.6rem, 10vw, 7.6rem);
-  opacity: .92;
-}
-.noor-orn--swag-bl { left: 1.4rem; transform: rotate(10deg); }
-.noor-orn--swag-br { right: 1.4rem; transform: scaleX(-1) rotate(10deg); }
 
 /* the signboard line + scroll cue beneath the stage */
 .hero-signboard {
@@ -340,7 +306,8 @@
   display: inline-flex;
   align-items: center;
   gap: .6rem;
-  color: color-mix(in srgb, var(--ivory) 62%, transparent);
+  color: color-mix(in srgb, var(--gilding) 88%, white 12%);
+  text-shadow: 0 1px 12px color-mix(in srgb, #1D060C 70%, transparent);
 }
 .hero-scroll__arrow {
   width: 15px;
@@ -367,8 +334,8 @@
   user-select: none;
   z-index: 2;
 }
-.story-corner--tl { top: -1rem; left: -1rem; }
-.story-corner--br { bottom: -1rem; right: -1rem; transform: rotate(180deg); }
+.story-corner--tl { top: 1.1rem; left: 1.1rem; }
+.story-corner--br { bottom: 1.1rem; right: 1.1rem; transform: rotate(180deg); }
 
 .prose--dropcap { text-align: left; }
 .prose--dropcap::first-letter {
@@ -704,13 +671,17 @@
   filter: drop-shadow(0 0 14px color-mix(in srgb, var(--champagne) 55%, transparent));
 }
 
-.event__card { min-width: 0; display: grid; row-gap: .3rem; }
+.event__card { min-width: 0; display: grid; row-gap: .3rem; position: relative; }
 
 .event__index {
-  display: block;
+  position: absolute;
+  top: .05rem;
+  right: 0;
   font-family: var(--font-arabic);
-  font-size: .98rem;
+  font-size: .95rem;
+  line-height: 1;
   color: var(--gold-ink);
+  opacity: .85;
 }
 
 .event__name {
@@ -791,9 +762,12 @@
 
 .particulars-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: clamp(1.2rem, 4vw, 2.2rem);
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.4rem, 4vw, 2.2rem) clamp(1.6rem, 5vw, 3rem);
   margin-top: clamp(1.4rem, 4vh, 2rem);
+}
+@media (max-width: 560px) {
+  .particulars-row { grid-template-columns: 1fr; }
 }
 
 .particular { display: grid; gap: .4rem; justify-items: center; }
@@ -854,21 +828,11 @@
   gap: .7rem;
   margin-top: clamp(2rem, 5.5vh, 3rem);
 }
-.dresscode-orn { width: min(300px, 70%); height: auto; opacity: .92; }
-.dresscode-label { color: var(--gold-ink); }
-.dresscode-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 3.4vw, 1.6rem);
-  color: var(--ink);
-  letter-spacing: .04em;
-}
-.dresscode-note {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: .92rem;
-  line-height: 1.7;
-  color: var(--ink-soft);
-  max-width: 52ch;
+.dresscode-orn {
+  width: min(300px, 70%);
+  height: auto;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 10px 22px color-mix(in srgb, #1D060C 22%, transparent));
 }
 
 /* ═══ THE STRING OF MOMENTS — a garnet band ═════════════════════ */
@@ -1112,7 +1076,12 @@
 }
 
 .rsvp-ornament { max-width: 340px; margin: 1.4rem auto 0; }
-.rsvp-ornament__img { width: 100%; height: auto; display: block; }
+.rsvp-ornament__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
 
 /* ═══ A CLOSING DUA — beneath the twilight dome ═════════════════ */
 
