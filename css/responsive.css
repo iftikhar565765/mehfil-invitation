@@ -21,7 +21,7 @@
   .event__when::before { min-width: 1.2rem; }
   .event__note { max-width: 100%; }
 
-  .arch-card { width: min(100%, 420px); }
+  .arch-card { width: min(100%, 460px); }
 }
 
 @media (max-width: 560px) {
